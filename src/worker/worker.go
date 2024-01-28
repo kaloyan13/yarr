@@ -77,7 +77,7 @@ func (w *Worker) SetRefreshRate(minute int64) {
 		for {
 			select {
 			case <-fire:
-				log.Printf("auto-refresh %dm: firing", m)
+				//log.Printf("auto-refresh %dm: firing", m)
 				w.RefreshFeeds()
 			case <-stop:
 				log.Printf("auto-refresh %dm: stopping", m)
@@ -102,7 +102,7 @@ func (w *Worker) RefreshFeeds() {
 		return
 	}
 
-	log.Print("Refreshing feeds")
+	//log.Print("Refreshing feeds")
 	atomic.StoreInt32(w.pending, int32(len(feeds)))
 	go w.refresher(feeds)
 }
@@ -132,7 +132,7 @@ func (w *Worker) refresher(feeds []storage.Feed) {
 	close(srcqueue)
 	close(dstqueue)
 
-	log.Printf("Finished refreshing %d feeds", len(feeds))
+	//log.Printf("Finished refreshing %d feeds", len(feeds))
 }
 
 func (w *Worker) worker(srcqueue <-chan storage.Feed, dstqueue chan<- []storage.Item) {
