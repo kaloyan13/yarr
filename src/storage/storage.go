@@ -3,7 +3,7 @@ package storage
 import (
 	"log"
 	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/mattn/go-sqlite3"
 )
 
 type Storage struct {
